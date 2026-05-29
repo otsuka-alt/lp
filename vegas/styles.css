@@ -4,25 +4,187 @@
   --lakers-gold: #fdb927;
   --bg-dark: #0b1022;
   --text-main: #f7f9ff;
-  --text-sub: #d7ddf8;
-  --card: rgba(255, 255, 255, 0.08);
-  --card-border: rgba(255, 255, 255, 0.18);
+  --text-sub: #f3e6c8;
+  --card: rgba(15, 10, 4, 0.55);
+  --card-border: rgba(255, 220, 140, 0.28);
 }
 
 * {
   box-sizing: border-box;
 }
 
+@keyframes gold-gradient-loop {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
   color: var(--text-main);
-  background:
-    radial-gradient(circle at 20% 0%, rgba(0, 90, 156, 0.35), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(85, 37, 131, 0.45), transparent 42%),
-    linear-gradient(160deg, var(--bg-dark) 0%, #101a3a 100%);
+  background-color: #1a1206;
   min-height: 100vh;
   padding: 18px 14px 26px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    125deg,
+    #120d04 0%,
+    #3d2a08 14%,
+    #8a6418 28%,
+    #fdb927 42%,
+    #ffe9a8 56%,
+    #e8b84a 70%,
+    #6b4f12 84%,
+    #1a1206 100%
+  );
+  background-size: 320% 320%;
+  animation: gold-gradient-loop 14s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 233, 168, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(10, 8, 4, 0.35) 0%, rgba(10, 8, 4, 0.55) 100%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+
+body.gate-locked {
+  overflow: hidden;
+}
+
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 14px;
+  background: rgba(18, 12, 4, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.gate-overlay[hidden] {
+  display: none;
+}
+
+.gate-panel {
+  width: min(100%, 360px);
+  border: 1px solid var(--card-border);
+  background: linear-gradient(135deg, rgba(0, 90, 156, 0.28), rgba(85, 37, 131, 0.28));
+  border-radius: 16px;
+  padding: 20px 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.gate-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  border-left: 4px solid var(--lakers-gold);
+  padding-left: 10px;
+}
+
+.gate-desc {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gate-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.gate-input {
+  width: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text-main);
+  font-size: 18px;
+  font-family: inherit;
+  letter-spacing: 0.08em;
+}
+
+.gate-input:focus {
+  outline: 2px solid var(--lakers-gold);
+  outline-offset: 2px;
+}
+
+.gate-input[aria-invalid="true"] {
+  border-color: #ff8a8a;
+}
+
+.gate-input::-webkit-outer-spin-button,
+.gate-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.gate-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.gate-error {
+  margin: 0;
+  font-size: 13px;
+  color: #ffb4b4;
+}
+
+.gate-submit {
+  margin-top: 4px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--lakers-gold), #ffd56f);
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.gate-submit:active {
+  transform: translateY(1px);
 }
 
 .wrap {
@@ -66,11 +228,82 @@ body {
   line-height: 1.6;
 }
 
-.baseball-line {
-  margin: 14px 0 0;
+.message-heading {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #ffffff;
+  border-left: 4px solid var(--lakers-gold);
+  padding-left: 10px;
+}
+
+.message-lead {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.message-lead strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.goal-box {
+  margin: 0 0 14px;
+  padding: 14px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(253, 185, 39, 0.35);
+  background: linear-gradient(135deg, rgba(253, 185, 39, 0.12), rgba(85, 37, 131, 0.18));
+}
+
+.goal-box-title {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.goal-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.goal-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--card-border);
+}
+
+.goal-list li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.goal-label {
   font-size: 13px;
-  color: #ffefc1;
-  letter-spacing: 0.03em;
+  color: var(--text-sub);
+  font-weight: 700;
+}
+
+.goal-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--lakers-gold);
+  letter-spacing: 0.02em;
+}
+
+.message-closing {
+  margin: 16px 0 0;
+  padding: 14px 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.85;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0, 90, 156, 0.28), rgba(85, 37, 131, 0.28));
+  border: 1px solid var(--card-border);
 }
 
 .message {
@@ -80,14 +313,6 @@ body {
   border-radius: 16px;
   padding: 16px 14px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
-}
-
-.message h2 {
-  margin: 0 0 12px;
-  font-size: 16px;
-  color: #ffffff;
-  border-left: 4px solid var(--lakers-gold);
-  padding-left: 10px;
 }
 
 .message p {
@@ -109,7 +334,7 @@ body {
 .footer-note {
   margin-top: 14px;
   text-align: center;
-  color: #c8d1f8;
+  color: rgba(255, 240, 200, 0.75);
   font-size: 12px;
   letter-spacing: 0.02em;
 }

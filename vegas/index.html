@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <title>ラスベガス販売会 | 社員向け案内</title>
+  <title>ベガス販売会開催!!</title>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -14,7 +14,28 @@
   <!-- End Google Tag Manager -->
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="gate-locked">
+  <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-hidden="false">
+    <div class="gate-panel">
+      <h2 id="gate-title" class="gate-title">JCKの目標粗利はいくらでしょうか？</h2>
+      <p class="gate-desc">正解しないと進めません 💪</p>
+      <form id="gate-form" class="gate-form" novalidate>
+        <label class="gate-label" for="gate-code">回答</label>
+        <input
+          id="gate-code"
+          class="gate-input"
+          name="code"
+          type="number"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          autocomplete="off"
+          required
+        />
+        <p id="gate-error" class="gate-error" role="alert" aria-live="polite" hidden>コードが正しくありません。</p>
+        <button type="submit" class="gate-submit">確認</button>
+      </form>
+    </div>
+  </div>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCMVGDSZ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -24,38 +45,37 @@
       <span class="badge">明日開幕 / LAS VEGAS SALES FAIR</span>
       <h1 class="title">ラスベガス販売会</h1>
       <p class="subtitle">世界中のお客様へ、私たちの価値を届ける本番が始まります。</p>
-      <p class="baseball-line">COLOR IMAGE: 野球 / ドジャーズ × レイカーズ</p>
     </section>
 
     <section class="message" aria-label="社員向けメッセージ">
-      <h2>社員の皆様</h2>
+      <h2 class="message-heading">社員の皆様</h2>
 
-      <p>お疲れ様です。[部署名/広報担当]の[氏名]です。</p>
+      <p class="message-lead">お疲れ様です！</p>
 
       <p>
         当社の一大プロジェクトである
         <span class="highlight">「ラスベガス販売会」</span>
-        が、いよいよ明日開幕いたします。
+        が、いよいよ<strong>明日開幕</strong>いたします ✨
       </p>
 
-      <p>
-        この日のために、商品開発、マーケティング、物流、そして営業など、多くの部署が連携し、
-        並々ならぬ努力を重ねて準備を進めてまいりました。関わったすべての社員の尽力に、心より感謝申し上げます。
-      </p>
+      <div class="goal-box">
+        <p class="goal-box-title">💰 今回の目標は…</p>
+        <ul class="goal-list">
+          <li><span class="goal-label">目標売上</span><span class="goal-value">8,000万円</span></li>
+          <li><span class="goal-label">目標粗利</span><span class="goal-value">4,000万円</span></li>
+        </ul>
+      </div>
 
-      <p>
-        明日からの本番では、世界中のお客様に当社の価値をお届けし、大きな成果を持ち帰ってくれることを確信しております。
-      </p>
+ 
 
-      <p>
-        期間中は社内システムにて現地の速報値を随時共有いたします。ぜひ進捗に注目いただき、
-        日本からも現地派遣チームへ温かいエールをよろしくお願いいたします。
+      <p class="message-closing">
+        🎉 みんなで力を合わせて、ラスベガス販売会を大成功に！<br>
+        熱く盛り上げていきましょう 🔥🔥
       </p>
-
-      <p>派遣チームの皆様の健闘と、安全を心よりお祈り申し上げます。</p>
     </section>
 
     <p class="footer-note">TEXT VERSION / MOBILE LANDING PAGE</p>
   </main>
+  <script src="./gate.js"></script>
 </body>
 </html>
